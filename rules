@@ -1,0 +1,169 @@
+8. What do do during the challenge
+
+   1. Plan on spending at least several hours packaging and testing your packaging.
+   2. Allow time for planning your game (for example 1/5 of the total time)
+   3. Allow time for polishing the game by adding instructions, opening menus, level transition screens, game over screen (for example 1/5 of the total time)
+   4. Upload screenshots and put them in diary entries!
+   5. Hang around in the IRC channel, irc.freenode.net channel #pyweek
+
+PyGame
+PyODE
+
+
+http://media.pyweek.org/static/rules.html
+
+
+caught
+
+
+me@icq:		caught in the gravity well of a wormhole
+me@icq:		to by mohlo byt fun, dostat se ven
+me@icq:		trebaa, lod ktera se nabiji z gravitace, nebo tak neco, at je to komplikovany
+me@icq:		ale zas tam je malo prostoru pro variaci kdyz uz se to jednou naucis
+me@icq:		tak treba mezi nejakou nahodne generovanou soustavou N pulsaru, at je menici se prostreedi
+me@icq:		a nebo pak v nejakem asteroidovem poli ale to uz by mozna muselo byt 3d aby to bylo zajimavy a to je blee
+me@icq:		ale vcera mi nejel net tak jsem dal nepokrocil
+me@icq:		tebe neco napadlo?
+Clime:		premyslim
+Clime:		mozna neudelame to jako zavody?
+me@icq:		zavody lodi? :)
+Clime:		mezi black holama
+me@icq:		heej, jo
+Clime:		cim vic se priblizis dire, tim vic paliva muzes nacerpat, ale pokud se priblizis moc tak Caught! ?
+me@icq:		yes
+me@icq:		za horizontem udalosti
+Clime:		jj
+me@icq:		to se mi libi
+Clime:		+ lode by se mohly strkat
+me@icq:		akorat se palivo musi cerpat rychleji nez ubyvat
+me@icq:		hej, cool
+me@icq:		rozhodne
+me@icq:		errrr
+me@icq:		akorat me napada
+me@icq:		v podstate jsme prave vymysleli KSpaceDuel :)
+Clime:		cool:)
+Clime:		je to stejny?
+me@icq:		no, docela jo .. ale ne nezbytne .. tam litas kolem slunce, po orbite
+me@icq:		a kdyz se ho dotknes tak vybouchens
+me@icq:		ale jinak, muzes se strkat, strilet, obcas sou tam bonusy, mas solarni panely ktery ti nabiji energii
+me@icq:		vicemene hodne stejny
+me@icq:		alekdyby treba ta cenra dira mela gravitacni fluktuace
+Clime:		:)
+me@icq:		a nebo jich bylo vic a ty lodky mely silnejsi motory takze nemuseli jen orbitovat
+me@icq:		tak by to mohlo byt zajimave
+Clime:		a tak jich by prave mohlo byt vic
+Clime:		mezi startem a cilem
+me@icq:		oohh
+me@icq:		oooohhh
+me@icq:		ohohohoho
+Clime:		:D
+me@icq:		to se mi libi
+me@icq:		a mozna i nejake dalsi prekazky na ceste
+Clime:		jj
+me@icq:		pole asteroidu treba ;)
+me@icq:		no, nebo koneckoncu ten mrak hmoty co na sebe ta zla vec nabaluje
+me@icq:		heh .. prevazne hmoty? ]:->
+me@icq:		a ..mozna .. dilatace casu? to muze byt v zavode zajimave :D
+me@icq:		akorat nemuze byt moc extremni
+Clime:		zalezi jak bys to chtel pouzit
+me@icq:		no, myslel jsem ciste podle blizkosti k dire
+Clime:		ze by se trebas dve lode strkali jako ve zpomalenem zaberu?\
+me@icq:		no, jakoze pohled mas podle nejakeho "absolutniho casu" ..
+me@icq:		a akorat cim je tva lodka bliz k dire, tak se aktualni rychlost nasobi necim mezi 0 a 1 a taky zrychleni a otaceni
+me@icq:		jakoze proste reaguje a hejbe se pomaleji
+Clime:		jasne
+Clime:		tak jsem to myslel
+Clime:		no klidne muzem zkusit, co to udela
+me@icq:		ah, tim lip :) ja si pod zpomalenym zaberem predstavil instant replay :)
+me@icq:		oki
+me@icq:		no, a mas nejake myslenky na pohled?
+Clime:		tak asi zhora, jsou jine moznosti?
+me@icq:		tak, vzdycky je tu ta moznost ze z pohledu lode, ze .. ale jo, to je moc extremni .. :)
+me@icq:		ale spis myslim jako tak ze asi nemuzes zobrazit celou trasu od startu do cile na 1 obrazovce
+me@icq:		nebo jo?
+Clime:		tak nechavat tu lod v centru
+me@icq:		.. takze ciste sitovy multiplayer?
+Clime:		tak klidne i single na cas
+Clime:		a muzem splitscreen
+Clime:		myslel jsem neco podobneho jako antigrav
+Clime:		akorat jiny herni princip a pohled zhora
+me@icq:		jop
+me@icq:		to se mi libi
+me@icq:		to je verna kombinace
+Clime:		ale klidne muzem jit rovnou do site. Nevim kolik to je prace navic
+me@icq:		no, se spravnou architekturou asi v poho .. pro splitscreen akorat kreslis 2 obrazy misto jednoho a pro sit je akorat potreba predavat si stavy
+me@icq:		coz se da vyuzit i pri lokalnim multi
+me@icq:		jakoze, lokalni multi muze byt specialni instance sitoveho multi, akorat s localhostem a special screen modem
+Clime:		aha
+me@icq:		:)
+me@icq:		ok, co jeste nemame vymysleny
+Clime:		jestli tam bude mapa
+me@icq:		jako minimapa? ta by se asi hodila, co
+Clime:		jj
+Clime:		a jestli to bude sirsi nez obrazovka
+Clime:		co se stane kdyz dojde palivo
+me@icq:		pokud budem mit nahodne generovany mapy, coz se asi hodi, tak se mapka hodi, nejde to hrat mm-style ze se to naucis
+Clime:		fyzika der
+Clime:		jj
+me@icq:		jj
+me@icq:		noo, kdyz dojde palivo tak prestane fungovat ovladani lodi
+me@icq:		pokud pude palivo nabijet, tak by to nemuselo byt totez co smrt
+me@icq:		pokud nepude, tak bych tu lod v pripade ze dojde palivo rovnou zabil
+Clime:		mohlo by ho to zacit hned stahovat
+me@icq:		mhmm :)
+Clime:		do nejblizsi cerne diry
+Clime:		tam by se mohla ta lod zachranit
+me@icq:		jop, to zni dobre
+me@icq:		noo, a jak budou fungovat lodni raketky
+Clime:		pohon?
+me@icq:		jj
+me@icq:		jakoze, otaceni + thrust dopredu (a pripadne brzda), nebo spis tlacitka pro aktivaci rakety na kazde strane
+me@icq:		jakoze, tlacitka sou divnejsi, ale zase je to pak asi ovladatelnejsi, otaceni je takovy normalnejsi ale mas pomalejsi reakce
+me@icq:		protoze se musis otacet, coz ale muze byt dobre na druhou stranu
+me@icq:		urcite bych dal nejakou rozumne realistickou fyziku
+me@icq:		ale vcetne toho ze pobliz diry mas "odpor vzduchu"
+me@icq:		protoze tam je ta hmota kolem
+me@icq:		mozna dokonce proudy nejake :)
+Clime:		ja bych tam moc randomu nedaval
+Clime:		nebo bys chtel ty proudy viditelne?
+me@icq:		no, kdyby proudy tak urcite viditelne
+me@icq:		ale muzem to dat jako myslenku bokem, kterou pridelame az kdyz budeme chtit pridat na obtiznosti pokud to bude moc lehke nebo tak
+Clime:		chce to jeste domyslet, jak s tim stahovanim
+Clime:		jestli se ta lod bude zrychlovat, cim blize bude horizontu
+me@icq:		mhmm
+me@icq:		tak, to mozna ciste fyzikalne, ne?
+Clime:		jo asi jo
+Clime:		to chce hadam si pak pohrat s hmotnostmi tech cernych der
+me@icq:		jo, to urcite
+me@icq:		najit nejakej rozumnej interval
+me@icq:		a jak dlouhou udelame trasu a jak husty diry na ni?
+Clime:		s tim si chce asi pohrat
+Clime:		jakoze si zkusit ruzne moznosti
+Clime:		nebo mas uz nejakou konkretni predstavu?
+me@icq:		praveze ne
+me@icq:		takze pohrat a zkusit zni dobre
+me@icq:		hmm, na fyziku by sme mohli pouzit pyode, co ty na to?
+Clime:		a s tim ovladanim...
+me@icq:		mhmm
+Clime:		neudelame to jako auto?
+me@icq:		jak moc jako auto?
+Clime:		no w a s d
+me@icq:		jakoze, jo, su pro, az na to ze autem typicky nezmita gravitace
+me@icq:		jj
+me@icq:		wasd zni dobre
+Clime:		w s akcelearci
+me@icq:		jj
+me@icq:		a s s brzdenim, ale umis brzdit pomaleji nez akcelerovat?
+Clime:		mel bys umet pomaleji?
+Clime:		jakoze brzdy jsou ucinejsi nebo slabsi myslis?
+me@icq:		nevim, jen me to napadlo ze ve frontieru to bylo a ze to vlastne davat smysl
+me@icq:		protoze spaceship asi bude mit jednu silnou raketu vzadu a pak nejaky ovladaci raketky vsude mozne
+me@icq:		takze na brzdeni pouzivas treba 3 predni raketky zatimco na akceleraci veelkou tucnou zadni raketu
+Clime:		no tak uvidime
+me@icq:		jasne, to se da taky poladit :)
+Clime:		ja bych akorat rad co nejprijemnejsi ovladani
+me@icq:		neco mi rika ze budeme mit veelkej constants.py :)
+me@icq:		jjjasne
+Clime:		asi jo:)
+me@icq:		asi nic tak magickeho jako antigrav :)
+me@icq:		nebo koneckoncu ten kspaceduel protoze orbital dynamics je zlo
