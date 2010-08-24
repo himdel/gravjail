@@ -24,7 +24,10 @@ while x:
 				x = False
 			keys[e.key] = 1
 		if e.type == KEYUP:
-			del keys[e.key]
+			try:
+				del keys[e.key]
+			except:
+				pass
 
 	for p in players:
 		for k in keys.keys():

@@ -39,16 +39,16 @@ def move_stars(stars, dx, dy):
 			s.y += 2.823
 
 
-def paint(objs):
+def paint(sh, objs):
 	surface.fill((0, 0, 0))
-	sx, sy, sz = objs[0].body.getPosition()
+	sx, sy, sz = sh.body.getPosition()
 
 	global lx, ly
 	move_stars(stars, lx - sx, ly - sy)
 	for s in stars:
 		s.paint(xcoord(0, 0), ra)
 
-	for o in objs:
+	for o in objs + [sh]:
 		o.paint(xcoord(320 - ra(sx), 240 + ra(sy)), ra)
 
 	pygame.display.flip()

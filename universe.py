@@ -9,8 +9,8 @@ from ship import Ship
 from hole import Hole
 
 h = Hole(1, 1)
-h2 = Hole(0, 2)
-s = Ship(1.5, 0)
+#h2 = Hole(0, 2)
+s = Ship(1.5, -0.5)
 
 
 #G = 6.67e-11
@@ -42,22 +42,19 @@ def grav(o1, o2):
 	o2.body.addForce((-Fx, -Fy, 0))
 
 
-def colvec(a, g1, g2):
+def colvec(s, g1, g2):
 	contacts = ode.collide(g1, g2)
 	for c in contacts:
-		a.zij = False
+		s.alive = False
 
 
 def step(dt):
 	grav(h, s)
-	grav(h2, s)
+#	grav(h2, s)
 
 #	for p in players:
 #		p.viewport.paint([p.ship] + objects)
-	objects = [s, h, h2]
-	paint(objects)
+	paint(s, [h])
 
 	space.collide(s, colvec)
 	world.step(dt)
-	for o in objects:
-		o.body.setForce((0, 0, 0))

@@ -16,7 +16,7 @@ class Ship:
 		M.setSphere(250, 0.05)
 		b.setMass(M)
 		b.setPosition((x, y, 0))
-		b.setLinearVel((-0.3,0,0))
+		b.setLinearVel((-1,0,0))
 		self.geom = g = ode.GeomSphere(space, 0.05)
 		g.setBody(b)
 
@@ -30,7 +30,6 @@ class Ship:
 	def acc(self, force):
 		fx = cos(self.angle) * force
 		fy = sin(self.angle) * force
-		print fx, fy
 		self.body.addForce((fx, fy, 0))
 	
 	def turn(self, angle):
