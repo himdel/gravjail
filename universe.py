@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import ode
-from viewport import paint
 
 world = ode.World()
 space = ode.SimpleSpace()
@@ -47,14 +46,12 @@ def colvec(s, g1, g2):
 	for c in contacts:
 		s.alive = False
 
-
-def step(dt):
+def step(dt, players):
 	grav(h, s)
 #	grav(h2, s)
 
-#	for p in players:
-#		p.viewport.paint([p.ship] + objects)
-	paint(s, [h])
+	for p in players:
+		p.viewport.paint([h])
 
 	space.collide(s, colvec)
 	world.step(dt)

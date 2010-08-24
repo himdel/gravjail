@@ -12,7 +12,7 @@ dt = 1.0/fps
 clk = pygame.time.Clock()
 
 x = True
-players = [player.Player(universe.s)]
+players = [player.Player(universe.s, viewport.Viewport(universe.s))]
 keys = {}
 while x:
 	events = pygame.event.get()
@@ -33,7 +33,7 @@ while x:
 		for k in keys.keys():
 			p.process_key(k)
 
-	universe.step(dt)
+	universe.step(dt, players)
 
 	if not universe.s.alive:
 		x = False
