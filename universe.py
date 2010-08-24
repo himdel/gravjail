@@ -38,8 +38,8 @@ def grav(o1, o2):
 	else:
 		Fy = -G * m * abs(dy) / d * diy
 
-	o1.body.setForce((Fx, Fy, 0))
-	o2.body.setForce((-Fx, -Fy, 0))
+	o1.body.addForce((Fx, Fy, 0))
+	o2.body.addForce((-Fx, -Fy, 0))
 
 
 def colvec(a, g1, g2):
@@ -48,15 +48,16 @@ def colvec(a, g1, g2):
 		a.zij = False
 
 
-
-
 def step(dt):
 	grav(h, s)
 	grav(h2, s)
 
 #	for p in players:
 #		p.viewport.paint([p.ship] + objects)
-	paint([s, h, h2])
+	objects = [s, h, h2]
+	paint(objects)
 
 	space.collide(s, colvec)
 	world.step(dt)
+	for o in objects:
+		o.body.setForce((0, 0, 0))
