@@ -9,7 +9,7 @@ from viewport import surface
 class Ship:
 	alive = True
 
-	def __init__(self, x, y):
+	def __init__(self, x, y, color):
 		self.body = b = ode.Body(world)
 		self.mass = M = ode.Mass()
 		self.angle = random() * 2 * pi
@@ -19,7 +19,7 @@ class Ship:
 		b.setLinearVel((-1,0,0))
 		self.geom = g = ode.GeomSphere(space, 0.05)
 		g.setBody(b)
-		self.color = (255, 255, 0)
+		self.color = color
 
 	def paint(self, coord, ra):
 		x, y, z = self.body.getPosition()
