@@ -9,7 +9,7 @@ from hole import Hole
 
 h = Hole(1, 1)
 #h2 = Hole(0, 2)
-s = Ship(1.5, -0.5)
+s = Ship(1.5, -0.5, (255, 255, 0))
 
 
 #G = 6.67e-11
