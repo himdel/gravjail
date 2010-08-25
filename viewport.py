@@ -54,10 +54,10 @@ class Viewport:
 
 		self.move_stars(self.lx - sx, self.ly - sy)
 		for s in self.stars:
-			s.paint(xcoord(0 + ox, 0 + oy), ra)
+			s.paint(xcoord(0 + self.ox, 0 + self.oy), ra)
 
 		for o in objs + [self.ship]:
-			o.paint(xcoord(320 - ra(sx) + ox, 240 + ra(sy) + oy), ra)
+			o.paint(xcoord(320 - ra(sx) + self.ox, 240 + ra(sy) + self.oy), ra)
 
 		pygame.display.flip()
 		self.lx, self.ly = sx, sy
