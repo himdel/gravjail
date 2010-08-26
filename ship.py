@@ -4,9 +4,13 @@ import pygame
 from math import *
 from random import random
 from universe import world, space
+from consts import *
 
 class Ship:
 	alive = True
+	fx = 0
+	fy = 0
+	lives = 5
 
 	def __init__(self, x, y, color):
 		self.body = b = ode.Body(world)
@@ -21,8 +25,8 @@ class Ship:
 		self.color = color
 
 	def paint(self, surface, coord, ra):
-		x, y, z = self.body.getPosition()
-		x, y = coord(x, y)
+		px, py, z = self.body.getPosition()
+		x, y = coord(px, py)
 		r = ra(0.05)
 		fx1 = cos(self.angle) * 1.8 * r
 		fy1 = -sin(self.angle) * 1.8 * r
@@ -36,6 +40,12 @@ class Ship:
 			( x + fx2, y + fy2 ),
 			( x + fx3, y + fy3 ),
 		])
+
+		#TODO toto kreslit jen na hlavni display
+		vx, vy, vz = self.body.getLinearVel()
+		pygame.draw.line(surface, huds_vel, (x, y), coord(px + vx * 0.1, py + vy * 0.1))
+
+		pygame.draw.line(surface, huds_force, (x, y), coord(px + self.fx, py + self.fy))
 
 	def acc(self, force):
 		fx = cos(self.angle) * force
