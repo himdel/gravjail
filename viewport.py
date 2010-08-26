@@ -13,7 +13,7 @@ class Viewport:
 	lx = 0
 	ly = 0
 
-	def __init__(self, player = None, w = xres, h = yres, ox = 0, oy = 0, zoom = 170):
+	def __init__(self, player = None, w = xres, h = yres, ox = 0, oy = 0, zoom = 170, stars = True):
 		self.player = player
 		self.ship = player.ship
 		self.w = w
@@ -27,7 +27,10 @@ class Viewport:
 		self.star_x = float(w) / zoom
 		self.star_y = -float(h) / zoom
 
-		self.stars = [Star(random() * self.star_x, random() * self.star_y) for x in range(50)]
+		if stars:
+			self.stars = [Star(random() * self.star_x, random() * self.star_y) for x in range(50)]
+		else:
+			self.stars = []
 
 
 	def move_stars(self, dx, dy):
@@ -61,6 +64,6 @@ class Viewport:
 
 		#FIXME: paint only visible ones
 		for o in objs + [self.ship]:
-			o.paint(self.xcoord(320 - self.ra(sx) + self.ox, 240 + self.ra(sy) + self.oy), self.ra)
+			o.paint(self.xcoord(self.w / 2 - self.ra(sx) + self.ox, self.h / 2 + self.ra(sy) + self.oy), self.ra)
 
 		self.lx, self.ly = sx, sy
