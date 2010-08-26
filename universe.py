@@ -10,7 +10,7 @@ from layout import Layout
 
 h = Hole(1, 1)
 #h2 = Hole(0, 2)
-s = Ship(1.5, -0.5)
+s = Ship(1.5, -0.5, (255, 255, 0))
 
 #G = 6.67e-11
 G = 6.67e-4
@@ -47,11 +47,7 @@ def colvec(s, g1, g2):
 	for c in contacts:
 		s.alive = False
 
-def step(dt, players, layout):
+def step(dt):
 	grav(h, s)
-#	grav(h2, s)
-
-	layout.drawLayout.paint([h])
-
-	space.collide(s, colvec)
 	world.step(dt)
+	space.collide(s, colvec)

@@ -1,26 +1,15 @@
 #!/usr/bin/python
 import pygame
+from consts import *
 
 pygame.init()
-surface = pygame.display.set_mode((640, 480))
+surface = pygame.display.set_mode((xres, yres))
 
 from star import Star
 from random import random
 from consts import *
 
-def ra(r):
-	return int(170 * r)
-
-def xcoord(a, b):
-	return lambda x, y: (int(a + ra(x)), int(b - ra(y)))
-
-x_dimMax = 3.764
-y_dimMax = 0
-y_dimMin = -2.823
-x_dimMin = 0
-
 class Viewport:
-	stars = [Star(random() * x_dimMax, random() * y_dimMin) for x in range(50)]
 	lx = 0
 	ly = 0
 
@@ -30,27 +19,36 @@ class Viewport:
 		self.h = h
 		self.ox = ox
 		self.oy = oy
-		# TODO zoom, neignorovat tady toto
+
+		self.ra = lambda x: int(zoom * x)
+		self.xcoord = lambda a, b: lambda x, y: (int(a + self.ra(x)), int(b - self.ra(y)))
+
+		self.star_x = float(w) / zoom
+		self.star_y = -float(h) / zoom
+
+		self.stars = [Star(random() * self.star_x, random() * self.star_y) for x in range(50)]
+
 
 	def move_stars(self, dx, dy):
 		for s in self.stars:
 			s.x += dx
 			s.y += dy
-			if (s.x > x_dimMax):
-				s.x -= x_dimMax
-				s.y = random() * y_dimMin
 
-			if (s.x < x_dimMin):
-				s.x += x_dimMax
-				s.y = random() * y_dimMin
+			if (s.x > self.star_x):
+				s.x -= self.star_x
+				s.y = random() * self.star_y
 
-			if (s.y > y_dimMax):
-				s.x = random() * x_dimMax
-				s.y += y_dimMin
+			if (s.x < 0):
+				s.x += self.star_x
+				s.y = random() * self.star_y
 
-			if (s.y < y_dimMin):
-				s.x = random() * x_dimMax
-				s.y -= y_dimMin
+			if (s.y > 0):
+				s.x = random() * self.star_x
+				s.y += self.star_y
+
+			if (s.y < self.star_y):
+				s.x = random() * self.star_x
+				s.y -= self.star_y
 
 
 	def paint(self, objs):
@@ -59,11 +57,11 @@ class Viewport:
 
 		self.move_stars(self.lx - sx, self.ly - sy)
 		for s in self.stars:
-			s.paint(xcoord(0 + self.ox, 0 + self.oy), ra)
+			s.paint(self.xcoord(0 + self.ox, 0 + self.oy), self.ra)
 
 		#FIXME: paint only visible ones
 		for o in objs + [self.ship]:
-			o.paint(xcoord(xres/2 - ra(sx) + self.ox, yres/2 + ra(sy) + self.oy), ra)
+			o.paint(self.xcoord(320 - self.ra(sx) + self.ox, 240 + self.ra(sy) + self.oy), self.ra)
 
 		pygame.display.flip()
 		self.lx, self.ly = sx, sy

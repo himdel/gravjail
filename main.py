@@ -33,7 +33,9 @@ while x:
 		for k in keys.keys():
 			p.process_key(k)
 
-	universe.step(dt, players)
+	universe.step(dt)
+	for p in players:
+		p.viewport.paint([universe.s, universe.h])
 
 	if not universe.s.alive:
 		x = False
