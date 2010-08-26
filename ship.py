@@ -4,7 +4,6 @@ import pygame
 from math import *
 from random import random
 from universe import world, space
-from viewport import surface
 
 class Ship:
 	alive = True
@@ -21,7 +20,7 @@ class Ship:
 		g.setBody(b)
 		self.color = color
 
-	def paint(self, coord, ra):
+	def paint(self, surface, coord, ra):
 		x, y, z = self.body.getPosition()
 		x, y = coord(x, y)
 		r = ra(0.05)

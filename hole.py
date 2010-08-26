@@ -2,7 +2,6 @@
 import ode
 import pygame
 from universe import world, space
-from viewport import surface
 
 class Hole:
 	def __init__(self, x, y):
@@ -14,7 +13,7 @@ class Hole:
 		self.geom = g = ode.GeomSphere(space, 0.03)
 		g.setBody(b)
 
-	def paint(self, coord, ra):
+	def paint(self, surface, coord, ra):
 		x, y, z = self.body.getPosition()
 		pygame.draw.circle(surface, (64, 64, 64), coord(x, y), ra(0.5), 0)
 		pygame.draw.circle(surface, (56, 56, 56), coord(x, y), ra(0.4), 0)
