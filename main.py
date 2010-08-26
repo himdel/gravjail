@@ -12,7 +12,7 @@ dt = 1.0/fps
 clk = pygame.time.Clock()
 
 x = True
-players = [player.Player(universe.s, viewport.Viewport(universe.s))]
+players = [player.Player(universe.s)]
 keys = {}
 while x:
 	events = pygame.event.get()

@@ -2,13 +2,12 @@ from pygame.locals import *
 
 class Player:
 
-	def __init__(self, ship, viewport):
+	def __init__(self, ship):
 		self.brake = K_s
 		self.acc = K_w
 		self.left = K_a
 		self.right = K_d
 		self.ship = ship
-		self.viewport = viewport
 	
 	def process_key(self, key):
 		if key == self.brake:

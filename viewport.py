@@ -6,6 +6,7 @@ surface = pygame.display.set_mode((640, 480))
 
 from star import Star
 from random import random
+from consts import *
 
 def ra(r):
 	return int(170 * r)
@@ -13,13 +14,17 @@ def ra(r):
 def xcoord(a, b):
 	return lambda x, y: (int(a + ra(x)), int(b - ra(y)))
 
+x_dimMax = 3.764
+y_dimMax = 0
+y_dimMin = -2.823
+x_dimMin = 0
 
 class Viewport:
-	stars = [Star(random() * 3.764, random() * -2.823) for x in range(50)]
+	stars = [Star(random() * x_dimMax, random() * y_dimMin) for x in range(50)]
 	lx = 0
 	ly = 0
 
-	def __init__(self, ship = None, w = 640, h = 480, ox = 0, oy = 0, zoom = 170):
+	def __init__(self, ship = None, w = xres, h = yres, ox = 0, oy = 0, zoom = 170):
 		self.ship = ship
 		self.w = w
 		self.h = h
@@ -31,21 +36,21 @@ class Viewport:
 		for s in self.stars:
 			s.x += dx
 			s.y += dy
-			if (s.x > 3.764):
-				s.x -= 3.764
-				s.y = random() * -2.823
+			if (s.x > x_dimMax):
+				s.x -= x_dimMax
+				s.y = random() * y_dimMin
 
-			if (s.x < 0):
-				s.x += 3.764
-				s.y = random() * -2.823
+			if (s.x < x_dimMin):
+				s.x += x_dimMax
+				s.y = random() * y_dimMin
 
-			if (s.y > 0):
-				s.x = random() * 3.764
-				s.y -= 2.823
+			if (s.y > y_dimMax):
+				s.x = random() * x_dimMax
+				s.y += y_dimMin
 
-			if (s.y < -2.823):
-				s.x = random() * 3.764
-				s.y += 2.823
+			if (s.y < y_dimMin):
+				s.x = random() * x_dimMax
+				s.y -= y_dimMin
 
 
 	def paint(self, objs):
@@ -54,10 +59,11 @@ class Viewport:
 
 		self.move_stars(self.lx - sx, self.ly - sy)
 		for s in self.stars:
-			s.paint(xcoord(0 + ox, 0 + oy), ra)
+			s.paint(xcoord(0 + self.ox, 0 + self.oy), ra)
 
+		#FIXME: paint only visible ones
 		for o in objs + [self.ship]:
-			o.paint(xcoord(320 - ra(sx) + ox, 240 + ra(sy) + oy), ra)
+			o.paint(xcoord(xres/2 - ra(sx) + self.ox, yres/2 + ra(sy) + self.oy), ra)
 
 		pygame.display.flip()
 		self.lx, self.ly = sx, sy
