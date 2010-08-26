@@ -6,15 +6,16 @@ space = ode.SimpleSpace()
 
 from ship import Ship
 from hole import Hole
+from random import random
+from consts import *
 
-h = Hole(1, 1)
-#h2 = Hole(0, 2)
+hs = [Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(holes_num)]
 s = Ship(1.5, -0.5, (255, 255, 0))
 
 #G = 6.67e-11
 G = 6.67e-4
 
-def grav(o1, o2):
+def grav(o1, o2, c = 1):
 	x1,y1,z1 = o1.body.getPosition()
 	x2,y2,z2 = o2.body.getPosition()
 
@@ -37,8 +38,8 @@ def grav(o1, o2):
 	else:
 		Fy = -G * m * abs(dy) / d * diy
 
-	o1.body.addForce((Fx, Fy, 0))
-	o2.body.addForce((-Fx, -Fy, 0))
+	o1.body.addForce((Fx * c, Fy * c, 0))
+	o2.body.addForce((-Fx * c, -Fy * c, 0))
 
 
 def colvec(s, g1, g2):
@@ -47,6 +48,7 @@ def colvec(s, g1, g2):
 		s.alive = False
 
 def step(dt):
-	grav(h, s)
+	for h in hs:
+		grav(h, s)
 	world.step(dt)
 	space.collide(s, colvec)

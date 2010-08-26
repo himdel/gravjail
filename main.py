@@ -36,7 +36,7 @@ while x:
 			p.process_key(k)
 
 	universe.step(dt)
-	layout.drawLayout([universe.s, universe.h])
+	layout.drawLayout(universe.hs)
 
 	if not universe.s.alive:
 		x = False
