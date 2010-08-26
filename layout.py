@@ -27,11 +27,15 @@ class Layout:
 		self.players = players
 		self.vps = []
 
-		for p in players:	# test 1 player, 2 pod sebou vp
-			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, 0, 0)
-			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, xres / 2 + 1, 0)
-			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, 0, yres / 2 + 1)
-			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, xres / 2 + 1, yres / 2 + 1)
+		add_p(self.vps, players[0], xres / 2 - 1, yres, 0, 0)
+		add_p(self.vps, players[1], xres / 2 - 1, yres, xres / 2 + 1, 0)
+
+#		for p in players:	# test 1 player, 2 pod sebou vp
+##			add_p(self.vps, p, xres, yres, 0, 0)
+#			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, 0, 0)
+#			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, xres / 2 + 1, 0)
+#			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, 0, yres / 2 + 1)
+#			add_p(self.vps, p, xres / 2 - 1, yres / 2 - 1, xres / 2 + 1, yres / 2 + 1)
 
 
 	def drawLayout(self, arg):
@@ -40,4 +44,7 @@ class Layout:
 			vpa, vpb = vp
 			vpa.paint(arg)
 			surface.blit(vpa.surface, vpb, None, BLEND_ADD)
+
+		pygame.draw.line(surface, (192, 192, 192), (xres / 2, 0), (xres / 2, yres - 1))
+
 		pygame.display.flip()
