@@ -13,13 +13,11 @@ class Viewport:
 	lx = 0
 	ly = 0
 
-	def __init__(self, player = None, w = xres, h = yres, ox = 0, oy = 0, zoom = 170, stars = True):
+	def __init__(self, player = None, w = xres, h = yres, zoom = 170, stars = True):
 		self.player = player
 		self.ship = player.ship
 		self.w = w
 		self.h = h
-		self.ox = ox
-		self.oy = oy
 
 		self.ra = lambda x: int(zoom * x)
 		self.xcoord = lambda a, b: lambda x, y: (int(a + self.ra(x)), int(b - self.ra(y)))
@@ -31,6 +29,8 @@ class Viewport:
 			self.stars = [Star(random() * self.star_x, random() * self.star_y) for x in range(50)]
 		else:
 			self.stars = []
+
+		self.surface = pygame.Surface((w, h))
 
 
 	def move_stars(self, dx, dy):
@@ -60,10 +60,10 @@ class Viewport:
 
 		self.move_stars(self.lx - sx, self.ly - sy)
 		for s in self.stars:
-			s.paint(self.xcoord(0 + self.ox, 0 + self.oy), self.ra)
+			s.paint(self.surface, self.xcoord(0, 0), self.ra)
 
 		#FIXME: paint only visible ones
 		for o in objs + [self.ship]:
-			o.paint(self.xcoord(self.w / 2 - self.ra(sx) + self.ox, self.h / 2 + self.ra(sy) + self.oy), self.ra)
+			o.paint(self.surface, self.xcoord(self.w / 2 - self.ra(sx), self.h / 2 + self.ra(sy)), self.ra)
 
 		self.lx, self.ly = sx, sy
