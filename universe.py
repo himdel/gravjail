@@ -6,11 +6,16 @@ space = ode.SimpleSpace()
 
 from ship import Ship
 from hole import Hole
+from checkpoint import Checkpoint
 from random import random
 from consts import *
 
 hs = [Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(holes_num)]
+
 s = Ship(1.5, -0.5, (255, 255, 0))
+s2 = Ship(0.5, -1.5, (255, 0, 255))
+
+cp = [Checkpoint(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(4)]
 
 #G = 6.67e-11
 G = 6.67e-4
@@ -42,13 +47,34 @@ def grav(o1, o2, c = 1):
 	o2.body.addForce((-Fx * c, -Fy * c, 0))
 
 
-def colvec(s, g1, g2):
+#TODO resit ty collision pointy a zjistit ktera lod umrela
+def colvec(ss, g1, g2):
+	s, s2 = ss
 	contacts = ode.collide(g1, g2)
-	for c in contacts:
-		s.alive = False
+#	for c in contacts:
+#		s.alive = False
 
 def step(dt):
 	for h in hs:
 		grav(h, s)
+		grav(h, s2)
+
+	for sh in [s, s2]:
+		x, y, z = sh.body.getPosition()
+		if x < (holes_spc * -0.5):
+			d = abs(x - (holes_spc * -0.5))
+			sh.body.addForce((bounds_acc * d, 0, 0))
+		if x > (holes_spc * +0.5):
+			d = abs(x - (holes_spc * +0.5))
+			sh.body.addForce((-bounds_acc * d, 0, 0))
+		if y < (holes_spc * -0.5):
+			d = abs(y - (holes_spc * -0.5))
+			sh.body.addForce((0, bounds_acc * d, 0))
+		if y > (holes_spc * +0.5):
+			d = abs(y - (holes_spc * +0.5))
+			sh.body.addForce((0, -bounds_acc * d, 0))
+
+		sh.fx, sh.fy, fz = sh.body.getForce()
+
 	world.step(dt)
-	space.collide(s, colvec)
+	space.collide((s, s2), colvec)
