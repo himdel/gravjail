@@ -3,11 +3,8 @@ from consts import *
 
 class Player:
 
-	def __init__(self, ship):
-		self.brake = K_s
-		self.acc = K_w
-		self.left = K_a
-		self.right = K_d
+	def __init__(self, ship, controls):
+		self.acc, self.brake, self.left, self.right = controls
 		self.ship = ship
 	
 	def process_key(self, key):
