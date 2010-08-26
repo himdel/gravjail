@@ -13,8 +13,9 @@ class Viewport:
 	lx = 0
 	ly = 0
 
-	def __init__(self, ship = None, w = xres, h = yres, ox = 0, oy = 0, zoom = 170):
-		self.ship = ship
+	def __init__(self, player = None, w = xres, h = yres, ox = 0, oy = 0, zoom = 170):
+		self.player = player
+		self.ship = player.ship
 		self.w = w
 		self.h = h
 		self.ox = ox
@@ -52,7 +53,6 @@ class Viewport:
 
 
 	def paint(self, objs):
-		surface.fill((0, 0, 0))
 		sx, sy, sz = self.ship.body.getPosition()
 
 		self.move_stars(self.lx - sx, self.ly - sy)
@@ -63,5 +63,4 @@ class Viewport:
 		for o in objs + [self.ship]:
 			o.paint(self.xcoord(320 - self.ra(sx) + self.ox, 240 + self.ra(sy) + self.oy), self.ra)
 
-		pygame.display.flip()
 		self.lx, self.ly = sx, sy
