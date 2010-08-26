@@ -57,6 +57,7 @@ class Viewport:
 
 	def paint(self, objs):
 		sx, sy, sz = self.ship.body.getPosition()
+		self.surface.fill((0, 0, 0))
 
 		self.move_stars(self.lx - sx, self.ly - sy)
 		for s in self.stars:
