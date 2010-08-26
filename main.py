@@ -4,15 +4,17 @@ import pygame
 from pygame.locals import *
 
 import universe
-import viewport
 import player
+import layout
 
 fps = 100
 dt = 1.0/fps
 clk = pygame.time.Clock()
 
-x = True
 players = [player.Player(universe.s)]
+layout = layout.Layout(players)
+
+x = True
 keys = {}
 while x:
 	events = pygame.event.get()
@@ -34,8 +36,7 @@ while x:
 			p.process_key(k)
 
 	universe.step(dt)
-	for p in players:
-		p.viewport.paint([universe.s, universe.h])
+	layout.drawLayout([universe.s, universe.h])
 
 	if not universe.s.alive:
 		x = False

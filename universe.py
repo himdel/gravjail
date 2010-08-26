@@ -6,7 +6,6 @@ space = ode.SimpleSpace()
 
 from ship import Ship
 from hole import Hole
-from layout import Layout
 
 h = Hole(1, 1)
 #h2 = Hole(0, 2)
