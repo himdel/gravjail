@@ -11,7 +11,10 @@ fps = 100
 dt = 1.0/fps
 clk = pygame.time.Clock()
 
-players = [player.Player(universe.s)]
+players = [
+	player.Player(universe.s, (K_w, K_s, K_a, K_d)),
+	player.Player(universe.s2, (K_UP, K_DOWN, K_LEFT, K_RIGHT)),
+]
 layout = layout.Layout(players)
 
 x = True
@@ -36,7 +39,7 @@ while x:
 			p.process_key(k)
 
 	universe.step(dt)
-	layout.drawLayout(universe.hs)
+	layout.drawLayout(universe.hs + universe.cp + [universe.s, universe.s2])
 
 	if not universe.s.alive:
 		x = False
