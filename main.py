@@ -3,6 +3,9 @@
 import pygame
 from pygame.locals import *
 
+import random
+random.seed()
+
 import universe
 import player
 import layout
