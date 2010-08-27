@@ -20,5 +20,4 @@ bounds_acc = 0.1	# * distance in
 huds_force = (255, 0, 0)
 huds_vel = (0, 255, 0)
 
-#vp_zoom = 170
-vp_zoom = 100
+vp_zoom = [100, 13.6, 3.4]
