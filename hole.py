@@ -3,6 +3,7 @@ import ode
 import pygame
 from universe import world, space
 from consts import *
+import graphics
 
 class Hole:
 	def __init__(self, x, y):
@@ -16,9 +17,12 @@ class Hole:
 
 	def paint(self, surface, coord, ra):
 		x, y, z = self.body.getPosition()
-		pygame.draw.circle(surface, (64, 64, 64), coord(x, y), ra(hole_w), 0)
-		pygame.draw.circle(surface, (56, 56, 56), coord(x, y), ra(0.4), 0)
-		pygame.draw.circle(surface, (48, 40, 40), coord(x, y), ra(hole_r), 0)
-		pygame.draw.circle(surface, (40, 40, 40), coord(x, y), ra(0.2), 0)
-		pygame.draw.circle(surface, (32, 32, 32), coord(x, y), ra(0.1), 0)
-		pygame.draw.circle(surface, (0, 0, 0), coord(x, y), ra(0.03), 0)
+
+		if graphics.blackhole:
+			xx, yy = coord(x - hole_w, y + hole_w)
+			side = ra(2 * hole_w)
+			surface.blit(graphics.scale(graphics.blackhole, side), (xx, yy, side, side))
+		else:
+			pygame.draw.circle(surface, (64, 64, 64), coord(x, y), ra(hole_w), 0)
+			pygame.draw.circle(surface, (48, 40, 40), coord(x, y), ra(hole_r), 0)
+			pygame.draw.circle(surface, (0, 0, 0), coord(x, y), ra(hole_r / 3), 0)
