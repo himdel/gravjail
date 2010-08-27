@@ -15,7 +15,7 @@ fps = 100
 dt = 1.0/fps
 clk = pygame.time.Clock()
 
-nplayers = 4
+nplayers = 2
 universe.init(nplayers)
 
 players = []
@@ -23,6 +23,9 @@ for x in range(nplayers):
 	players.append(player.Player(universe.ships[x], consts.keyConfigs[x]))
 
 layout = layout.Layout(players)
+
+#import menu
+#menu.menu()
 
 x = True
 keys = {}
