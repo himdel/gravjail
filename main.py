@@ -49,7 +49,7 @@ while x:
 			p.process_key(k)
 
 	universe.step(dt)
-	layout.drawLayout(universe.borders + universe.hs + universe.cp + universe.ships)
+	layout.drawLayout(universe.hs + universe.cp + universe.ships)
 
 	# game over
 	x = False
