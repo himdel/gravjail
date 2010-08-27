@@ -5,6 +5,7 @@ blackhole = None
 ship = None
 bonus = None
 
+menubg = pygame.image.load("pic/main.png")
 
 enabled = False
 
