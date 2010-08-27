@@ -3,6 +3,7 @@ import pygame
 from consts import *
 
 pygame.init()
+pygame.mixer.quit()
 surface = pygame.display.set_mode((xres, yres))
 
 from star import Star
