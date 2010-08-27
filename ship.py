@@ -41,12 +41,6 @@ class Ship:
 			( x + fx3, y + fy3 ),
 		])
 
-		#TODO toto kreslit jen na hlavni display
-		vx, vy, vz = self.body.getLinearVel()
-		pygame.draw.line(surface, huds_vel, (x, y), coord(px + vx * 0.1, py + vy * 0.1))
-
-		pygame.draw.line(surface, huds_force, (x, y), coord(px + self.fx, py + self.fy))
-
 	def acc(self, force):
 		fx = cos(self.angle) * force
 		fy = sin(self.angle) * force
