@@ -45,12 +45,12 @@ class Layout:
 
 		# viewport borders
 		if len(self.players) == 2:
-			pygame.draw.line(surface, (192, 192, 192), (xres / 2, 0), (xres / 2, yres))
+			pygame.draw.line(surface, (192, 192, 192), (xres / 2 - 1, 0), (xres / 2 - 1, yres))
 		elif len(self.players) == 3:
-			pygame.draw.line(surface, (192, 192, 192), (xres / 3, 0), (xres / 3, yres))
-			pygame.draw.line(surface, (192, 192, 192), (2 * xres / 3, 0), (2 * xres / 3, yres))
+			pygame.draw.line(surface, (192, 192, 192), (xres / 3 - 1, 0), (xres / 3 - 1, yres))
+			pygame.draw.line(surface, (192, 192, 192), (2 * xres / 3 - 1, 0), (2 * xres / 3 - 1, yres))
 		elif len(self.players) == 4:
-			pygame.draw.line(surface, (192, 192, 192), (xres / 2, 0), (xres / 2, yres))
-			pygame.draw.line(surface, (192, 192, 192), (0, yres / 2), ( xres, yres / 2))
+			pygame.draw.line(surface, (192, 192, 192), (xres / 2 - 1, 0), (xres / 2 - 1, yres))
+			pygame.draw.line(surface, (192, 192, 192), (0, yres / 2 - 1), ( xres, yres / 2 - 1))
 
 		pygame.display.flip()
