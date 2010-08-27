@@ -12,13 +12,21 @@ from consts import *
 
 hs = [Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(holes_num)]
 
-s = Ship(1.5, -0.5, (255, 255, 0))
-s2 = Ship(0.5, -1.5, (255, 0, 255))
+# to be filled at game start
+ships = []
 
 cp = [Checkpoint(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(4)]
 
 #G = 6.67e-11
 G = 6.67e-4
+
+# universe initialization, so far only ships are created
+def init(nplayers):
+	global ships
+	ships = []
+	pos = [(1.5, -0.5), (1.5, -1.5), (0.5, -0.5), (0.5, -1.5)]
+	for x in range(nplayers):
+		ships.append(Ship(pos[x][0], pos[x][1], pcolors[x]))
 
 def grav(o1, o2, c = 1):
 	x1,y1,z1 = o1.body.getPosition()
@@ -55,11 +63,13 @@ def colvec(ss, g1, g2):
 #		s.alive = False
 
 def step(dt):
+	# apply gravity on objects
 	for h in hs:
-		grav(h, s)
-		grav(h, s2)
+		for s in ships:
+			grav(h, s)
 
-	for sh in [s, s2]:
+	# maintain game borders
+	for sh in ships:
 		x, y, z = sh.body.getPosition()
 		if x < (holes_spc * -0.5):
 			d = abs(x - (holes_spc * -0.5))
@@ -77,4 +87,4 @@ def step(dt):
 		sh.fx, sh.fy, fz = sh.body.getForce()
 
 	world.step(dt)
-	space.collide((s, s2), colvec)
+	space.collide((ships, hs, cp), colvec)
