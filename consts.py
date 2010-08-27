@@ -3,8 +3,8 @@
 from pygame.locals import *
 
 # global constants
-xres = 512 + 384
-yres = xres / 4 * 3
+xres = 800
+yres = 600
 
 #holes_spc = 128
 holes_spc = 60
@@ -27,7 +27,12 @@ vp_zoom = [100, 10]
 
 pcolors = [(255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 255)]    # player colors
 
-keyConfigs = [(K_UP, K_DOWN, K_LEFT, K_RIGHT), 
-              (K_w, K_s, K_a, K_d), 
-              (K_i, K_k, K_j, K_l), 
-              (K_8, K_5, K_4, K_6)]
+keyConfigs = [
+	(K_w, K_s, K_a, K_d),
+	(K_UP, K_DOWN, K_LEFT, K_RIGHT),
+	(K_i, K_k, K_j, K_l),
+	(K_8, K_5, K_4, K_6),
+]
+
+menu_item = (128, 0, 128)
+menu_active_item = (255, 0, 255)
