@@ -64,12 +64,11 @@ def grav(o1, o2, c = 1):
 
 
 #TODO resit ty collision pointy a zjistit ktera lod umrela
-def colvec(data, g1, g2):
-	ships, holes, checkpoints = data
+def colvec(ss, g1, g2):
+	s, s2 = ss
 	contacts = ode.collide(g1, g2)
 #	for c in contacts:
 #		s.alive = False
-
 
 def step(dt):
 	# apply gravity on objects
