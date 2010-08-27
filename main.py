@@ -34,6 +34,9 @@ while x:
 		if e.type == KEYDOWN:
 			if e.key == K_ESCAPE:
 				x = False
+			if e.key == K_SPACE:
+				import graphics
+				graphics.toggle()
 			keys[e.key] = 1
 		if e.type == KEYUP:
 			try:
