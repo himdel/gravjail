@@ -6,6 +6,7 @@ space = ode.SimpleSpace()
 
 from ship import Ship
 from hole import Hole
+from border import Border
 from checkpoint import Checkpoint
 from random import random
 from consts import *
@@ -16,6 +17,13 @@ hs = [Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_sp
 ships = []
 
 cp = [Checkpoint(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(4)]
+
+borders = [
+	Border(0, -0.5 * holes_spc, holes_spc, 0.1),
+	Border(0, +0.5 * holes_spc, holes_spc, 0.1),
+	Border(-0.5 * holes_spc, 0, 0.1, holes_spc),
+	Border(+0.5 * holes_spc, 0, 0.1, holes_spc),
+]
 
 #G = 6.67e-11
 G = 6.67e-4
