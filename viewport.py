@@ -65,9 +65,13 @@ class Viewport:
 		for s in self.stars:
 			s.paint(self.surface, self.xcoord(0, 0), self.ra)
 
-		#FIXME: paint only visible ones
+		# draw objects
+		coord = self.xcoord(self.w / 2 - self.ra(sx), self.h / 2 + self.ra(sy))
 		for o in objs + [self.ship]:
-			o.paint(self.surface, self.xcoord(self.w / 2 - self.ra(sx), self.h / 2 + self.ra(sy)), self.ra)
+			ox, oy, oz = o.body.getPosition()
+			x, y = coord(ox, oy)
+			if x > int(-0.5 * self.w) and x < int(1.5 * self.w) and y > int(-0.5 * self.h) and y < int(1.5 * self.h):
+				o.paint(self.surface, coord, self.ra)
 
 		# draw vectors
 		if self.drawVectors:
