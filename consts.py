@@ -7,10 +7,13 @@ xres = 800
 yres = 600
 
 #holes_spc = 128
-holes_spc = 60
-holes_num = 16
+holes_spc = 64
+holes_num = 10
+
+checkpoints_num = 4
 
 ship_acc = 0.2
+ship_mass = 250
 
 #hole_mass = 50000
 hole_mass = 100000
@@ -18,6 +21,8 @@ hole_r = 0.3		# active hole radius
 hole_w = 0.5		# visual hole radius
 
 bounds_acc = 0.1	# * distance in
+
+hfactor = 1000		# for health loss after collision
 
 huds_force = (255, 0, 0)
 huds_vel = (0, 255, 0)
