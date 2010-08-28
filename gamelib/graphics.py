@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import pygame
+import data
 
 blackhole = None
 ship = None
@@ -14,7 +15,7 @@ def toggle():
 		blackhole = None
 	else:
 		enabled = True
-		blackhole = {0: pygame.image.load("pic/blackhole.png")}
+		blackhole = {0: pygame.image.load(data.filepath("blackhole.png"))}
 
 def scale(obj, side):
 	if not side in obj:

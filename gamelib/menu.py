@@ -4,6 +4,7 @@ from pygame.locals import *
 
 from viewport import surface
 from consts import *
+import data
 
 def play(n):
 	pass
@@ -25,12 +26,12 @@ def quit():
 	sys.exit(0)
 
 try:
-	menubg = pygame.image.load("pic/main.png")
+	menubg = pygame.image.load(data.filepath("main.png"))
 except:
 	menubg = pygame.Surface((xres, yres))
 
 try:
-	pabout = pygame.image.load("pic/about.png")
+	pabout = pygame.image.load(data.filepath("about.png"))
 except:
 	pabout = pygame.Surface((xres, yres))
 
