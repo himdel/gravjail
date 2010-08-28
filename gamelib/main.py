@@ -40,7 +40,7 @@ def main():
 		s = ship.Ship(pos[x][0], pos[x][1], consts.pcolors[x])
 		player.Player(s, consts.keyConfigs[x], pnames[x])
 
-	layout = layout.Layout(universe.players)
+	game_layout = layout.Layout(universe.players)
 
 	x = True
 	keys = {}
@@ -70,7 +70,7 @@ def main():
 				p.process_key(k)
 
 		universe.step(dt)
-		layout.drawLayout(universe.holes + universe.checkpoints + universe.ships)
+		game_layout.drawLayout(universe.holes + universe.checkpoints + universe.ships)
 
 		# game over
 		x = False
