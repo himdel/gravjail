@@ -8,6 +8,7 @@ random.seed()
 
 import universe
 import player
+import ship
 import layout
 import consts
 
@@ -15,17 +16,20 @@ fps = 100
 dt = 1.0/fps
 clk = pygame.time.Clock()
 
+import menu
+menu.wait = lambda: clk.tick(fps)
+menu.menu()
+
 nplayers = 2
-universe.init(nplayers)
 
-players = []
+pos = [(1.5, -0.5), (1.5, -1.5), (0.5, -0.5), (0.5, -1.5)]
+pnames = ["yellow", "violet", "cyan", "white"]
+
 for x in range(nplayers):
-	players.append(player.Player(universe.ships[x], consts.keyConfigs[x]))
+	s = ship.Ship(pos[x][0], pos[x][1], consts.pcolors[x])
+	player.Player(s, consts.keyConfigs[x], pnames[x])
 
-layout = layout.Layout(players)
-
-#import menu
-#menu.menu()
+layout = layout.Layout(universe.players)
 
 x = True
 keys = {}
@@ -50,12 +54,12 @@ while x:
 	if not x:
 		break
 
-	for p in players:
+	for p in universe.players:
 		for k in keys.keys():
 			p.process_key(k)
 
 	universe.step(dt)
-	layout.drawLayout(universe.hs + universe.cp + universe.ships)
+	layout.drawLayout(universe.holes + universe.checkpoints + universe.ships)
 
 	# game over
 	x = False
