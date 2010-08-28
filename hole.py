@@ -1,19 +1,21 @@
 #!/usr/bin/python
 import ode
 import pygame
-from universe import world, space
+from universe import world, space, holes
 from consts import *
 import graphics
 
 class Hole:
 	def __init__(self, x, y):
 		self.body = b = ode.Body(world)
+		self.body.grobj = self
 		self.mass = M = ode.Mass()
 		M.setSphere(hole_mass, hole_r)
 		b.setMass(M)
 		b.setPosition((x, y, 0))
 		self.geom = g = ode.GeomSphere(space, hole_r)
 		g.setBody(b)
+		holes.append(self)
 
 	def paint(self, surface, coord, ra):
 		x, y, z = self.body.getPosition()
