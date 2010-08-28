@@ -5,8 +5,6 @@ blackhole = None
 ship = None
 bonus = None
 
-menubg = pygame.image.load("pic/main.png")
-
 enabled = False
 
 def toggle():
@@ -22,3 +20,8 @@ def scale(obj, side):
 	if not side in obj:
 		obj[side] = pygame.transform.scale(obj[0], (side, side))
 	return obj[side]
+
+try:
+	toggle()
+except:
+	print "sorry, no graphics for you"
