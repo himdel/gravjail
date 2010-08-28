@@ -1,11 +1,4 @@
-general:
-1) collisions
-2) game borders
-
-huds in viewport: 
-1) checkpoints: hits/all
 2) timer counting down
-4) health, (armor, minigun ammo)
 3) special bonuses, their counts, pointer to the chosen one at the moment (bar upon)
 
 NOTE: maybe more fun than bonuses...
