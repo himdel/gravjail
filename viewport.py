@@ -57,9 +57,12 @@ class Viewport:
 
 
 	def paint(self, objs):
-		sx, sy, sz = self.ship.body.getPosition()
 		self.surface.fill((0, 0, 0))
 
+		if self.ship.alive == False:
+			return
+
+		sx, sy, sz = self.ship.body.getPosition()
 		self.move_stars(self.lx - sx, self.ly - sy)
 
 		# draw stars
@@ -79,5 +82,14 @@ class Viewport:
 			vx, vy, vz = self.ship.body.getLinearVel()
 			pygame.draw.line(self.surface, huds_vel, coord(sx, sy), coord(sx + vx * 0.1, sy + vy * 0.1))
 			pygame.draw.line(self.surface, huds_force, coord(sx, sy), coord(sx + self.ship.fx, sy + self.ship.fy))
+
+		# draw number of checkpoints
+		for i in range(self.player.checkpoints):
+			pygame.draw.rect(self.surface, self.ship.color, (20 + 30 * i, 20, 20, 20))
+
+		# draw health
+		xx, yy = coord(sx, sy)
+		pygame.draw.rect(self.surface, (0, 32, 0), (xx - 25, yy - 20, 50, 2))
+		pygame.draw.rect(self.surface, (0, 192, 0), (xx - 25, yy - 20, self.player.ship.health / 2, 2))
 
 		self.lx, self.ly = sx, sy
