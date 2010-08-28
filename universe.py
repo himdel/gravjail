@@ -3,30 +3,29 @@ import ode
 
 world = ode.World()
 space = ode.SimpleSpace()
+contactgroup = ode.JointGroup()
+
+ships = []
+holes = []
+checkpoints = []
+players = []
 
 from ship import Ship
 from hole import Hole
 from checkpoint import Checkpoint
 from random import random
 from consts import *
+from math import *
 
-hs = [Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(holes_num)]
+for x in range(holes_num):
+	Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2)
 
-# to be filled at game start
-ships = []
+for x in range(checkpoints_num):
+	Checkpoint(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2)
 
-cp = [Checkpoint(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2) for x in range(4)]
 
 #G = 6.67e-11
 G = 6.67e-4
-
-# universe initialization, so far only ships are created
-def init(nplayers):
-	global ships
-	ships = []
-	pos = [(1.5, -0.5), (1.5, -1.5), (0.5, -0.5), (0.5, -1.5)]
-	for x in range(nplayers):
-		ships.append(Ship(pos[x][0], pos[x][1], pcolors[x]))
 
 def grav(o1, o2, c = 1):
 	x1,y1,z1 = o1.body.getPosition()
@@ -55,17 +54,53 @@ def grav(o1, o2, c = 1):
 	o2.body.addForce((-Fx * c, -Fy * c, 0))
 
 
-#TODO resit ty collision pointy a zjistit ktera lod umrela
-def colvec(data, g1, g2):
-	ships, holes, checkpoints = data
+def collision_handler(data, g1, g2):
+	world, contactgroup = data
 	contacts = ode.collide(g1, g2)
-#	for c in contacts:
-#		s.alive = False
+
+	m1 = g1.getBody().getMass().mass
+	m2 = g2.getBody().getMass().mass
+	vx1, vy1, vz1 = g1.getBody().getLinearVel()
+	vx2, vy2, vz2 = g2.getBody().getLinearVel()
+
+	bounce = False
+
+	# collision between 2 ships
+	if g1.getBody().grobj.__class__ == Ship and g2.getBody().grobj.__class__ == Ship:
+		bounce = True
+		h = (m1 + m2) * sqrt((vx1 - vx2) ** 2 + (vy1 - vy2) ** 2) / hfactor
+		g1.getBody().grobj.kill(h)
+		g2.getBody().grobj.kill(h)
+	# collision between 2 non-ships
+	elif g1.getBody().grobj.__class__ != Ship and g2.getBody().grobj.__class__ != Ship:
+		bounce = True
+	# ship and hole or checkpoint
+	else:
+		s, o = None, None
+		if g1.getBody().grobj.__class__ == Ship:
+			s = g1.getBody().grobj
+			o = g2.getBody().grobj
+		else:
+			s = g2.getBody().grobj
+			o = g1.getBody().grobj
+		if o.__class__ == Hole:
+			s.kill( (m1 + m2) * sqrt((vx1 - vx2) ** 2 + (vy1 - vy2) ** 2) / hfactor )
+		elif o.__class__ == Checkpoint:
+			o.bump(s)
+		else:
+			print "wtf?: %s" % o
+
+	if bounce:
+		for c in contacts:
+			c.setBounce(1)
+			c.setMu(500)
+			j = ode.ContactJoint(world, contactgroup, c)
+			j.attach(g1.getBody(), g2.getBody())
 
 
 def step(dt):
-	# apply gravity on objects
-	for h in hs:
+	# apply gravity on ships
+	for h in holes:
 		for s in ships:
 			grav(h, s)
 
@@ -87,5 +122,20 @@ def step(dt):
 
 		sh.fx, sh.fy, fz = sh.body.getForce()
 
+	# check for victory
+	for p in players:
+		p.checkpoints = 0
+
+	for c in checkpoints:
+		if c.ship == None:
+			continue
+		c.ship.player.checkpoints += 1
+
+	for p in players:
+		if p.checkpoints == checkpoints_num:
+			p.ship.kill(p.ship.health, "wins")
+
+
+	space.collide((world, contactgroup), collision_handler)
 	world.step(dt)
-	space.collide((ships, hs, cp), colvec)
+	contactgroup.empty()
