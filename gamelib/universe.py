@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import ode
 
-world = ode.World()
-space = ode.SimpleSpace()
+world = None
+space = None
 contactgroup = ode.JointGroup()
 
 ships = []
@@ -12,6 +12,9 @@ players = []
 
 from consts import *
 from math import *
+from ship import Ship
+from hole import Hole
+from checkpoint import Checkpoint
 
 
 #G = 6.67e-11
@@ -123,7 +126,7 @@ def step(dt):
 
 	for p in players:
 		if p.checkpoints == checkpoints_num:
-			p.ship.kill(p.ship.health, "wins")
+			p.ship.win()
 
 	space.collide((world, contactgroup), collision_handler)
 	world.step(dt)
