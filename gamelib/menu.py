@@ -6,9 +6,9 @@ from viewport import surface
 from consts import *
 import data
 
-def about():
+def screen(img):
 	surface.fill((0, 0, 64))
-	surface.blit(pabout, (0, 0, xres, yres))
+	surface.blit(img, (0, 0, xres, yres))
 	pygame.display.flip()
 	while True:
 		events = pygame.event.get()
@@ -53,7 +53,7 @@ def menu():
 		("Two players", lambda: play(2)),
 		("Three players", lambda: play(3)),
 		("Four players", lambda: play(4)),
-		("About", about),
+		("About", lambda: screen(pabout)),
 		("Quit", quit),
 	]
 	while True:
