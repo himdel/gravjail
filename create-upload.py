@@ -45,6 +45,7 @@ def add_files(generator):
 
         for name in filenames:
             if name.startswith('.'): continue
+            if name.endswith('.xcf'): continue
             suffix = os.path.splitext(name)[1]
             if suffix in ('.pyc', '.pyo'): continue
             if name[0] == '.': continue
