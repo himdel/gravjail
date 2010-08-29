@@ -10,18 +10,8 @@ holes = []
 checkpoints = []
 players = []
 
-from ship import Ship
-from hole import Hole
-from checkpoint import Checkpoint
-from random import random
 from consts import *
 from math import *
-
-for x in range(holes_num):
-	Hole(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2)
-
-for x in range(checkpoints_num):
-	Checkpoint(random() * holes_spc - holes_spc / 2, random() * holes_spc - holes_spc / 2)
 
 
 #G = 6.67e-11
@@ -134,7 +124,6 @@ def step(dt):
 	for p in players:
 		if p.checkpoints == checkpoints_num:
 			p.ship.kill(p.ship.health, "wins")
-
 
 	space.collide((world, contactgroup), collision_handler)
 	world.step(dt)

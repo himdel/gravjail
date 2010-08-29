@@ -6,9 +6,6 @@ from viewport import surface
 from consts import *
 import data
 
-def play(n):
-	pass
-
 def about():
 	surface.fill((0, 0, 64))
 	surface.blit(pabout, (0, 0, xres, yres))
@@ -35,12 +32,21 @@ try:
 except:
 	pabout = pygame.Surface((xres, yres))
 
+try:
+	victory = pygame.image.load(data.filepath("victory.png"))
+except:
+	victory = pygame.Surface((xres, yres))
+
+try:
+	loss = pygame.image.load(data.filepath("loss.png"))
+except:
+	loss = pygame.Surface((xres, yres))
+
 wait = None
 
 def menu():
 	fnt = pygame.font.SysFont(pygame.font.get_default_font(), 32)
 
-	x = True
 	item = 0
 	items = [
 		("Single player", lambda: play(1)),
@@ -50,7 +56,7 @@ def menu():
 		("About", about),
 		("Quit", quit),
 	]
-	while x:
+	while True:
 		surface.fill((0, 0, 64))
 		surface.blit(menubg, (0, 0, xres, yres))
 
@@ -78,7 +84,6 @@ def menu():
 					item %= len(items)
 				if e.key == K_RETURN:
 					items[item][1]()
-					x = False	#TODO remove
 
 		pygame.display.flip()
 		wait()

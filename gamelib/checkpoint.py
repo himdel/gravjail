@@ -14,7 +14,6 @@ class Checkpoint:
 		self.ship = None
 		self.geom = g = ode.GeomSphere(space, 0.5)
 		g.setBody(b)
-		checkpoints.append(self)
 
 	def paint(self, surface, coord, ra):
 		x, y, z = self.body.getPosition()

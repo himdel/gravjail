@@ -25,7 +25,6 @@ class Ship:
 		self.geom = g = ode.GeomSphere(space, 0.05)
 		g.setBody(b)
 		self.color = color
-		ships.append(self)
 
 	def paint(self, surface, coord, ra):
 		if self.alive == False:

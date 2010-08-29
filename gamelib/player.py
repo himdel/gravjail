@@ -10,7 +10,6 @@ class Player:
 		self.acc, self.brake, self.left, self.right = controls
 		self.ship = ship
 		self.ship.player = self
-		players.append(self)
 	
 	def process_key(self, key):
 		if self.ship.alive == False:

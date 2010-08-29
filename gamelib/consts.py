@@ -33,8 +33,8 @@ vp_zoom = [100, 10]
 pcolors = [(255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 255)]    # player colors
 
 keyConfigs = [
-	(K_w, K_s, K_a, K_d),
 	(K_UP, K_DOWN, K_LEFT, K_RIGHT),
+	(K_w, K_s, K_a, K_d),
 	(K_i, K_k, K_j, K_l),
 	(K_8, K_5, K_4, K_6),
 ]

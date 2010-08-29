@@ -15,7 +15,6 @@ class Hole:
 		b.setPosition((x, y, 0))
 		self.geom = g = ode.GeomSphere(space, hole_r)
 		g.setBody(b)
-		holes.append(self)
 
 	def paint(self, surface, coord, ra):
 		x, y, z = self.body.getPosition()
