@@ -1,13 +1,12 @@
 #!/usr/bin/python
 import ode
 import pygame
-from universe import world, space, checkpoints
 
 def mul(a, b):
 	return map(lambda x: int(x[0] * x[1]), zip(a, b))
 
 class Checkpoint:
-	def __init__(self, x, y):
+	def __init__(self, x, y, (world, space)):
 		self.body = b = ode.Body(world)
 		self.body.grobj = self
 		b.setPosition((x, y, 0))

@@ -1,6 +1,5 @@
 from pygame.locals import *
 from consts import *
-from universe import players
 
 class Player:
 	checkpoints = 0

@@ -3,17 +3,17 @@ import ode
 import pygame
 from math import *
 from random import random
-from universe import world, space, ships
 from consts import *
 
 class Ship:
 	alive = True
+	winner = False
 	fx = 0
 	fy = 0
 	health = 100
 	player = None
 
-	def __init__(self, x, y, color):
+	def __init__(self, x, y, color, ships, (world, space)):
 		self.body = b = ode.Body(world)
 		self.body.grobj = self
 		self.mass = M = ode.Mass()
@@ -25,6 +25,7 @@ class Ship:
 		self.geom = g = ode.GeomSphere(space, 0.05)
 		g.setBody(b)
 		self.color = color
+		self.ships = ships
 
 	def paint(self, surface, coord, ra):
 		if self.alive == False:
@@ -58,12 +59,20 @@ class Ship:
 		self.angle += angle * 0.1
 		self.angle %= 2 * pi
 
-	def kill(self, h, msg = "dead"):
+	def kill(self, h):
 		if self.alive == False:
 			return
 		self.health -= int(h)
 		if self.health <= 0:
 			self.health = 0
 			self.alive = False
-			ships.remove(self)
-			print "player %s %s" % (self.player.name, msg)
+			self.ships.remove(self)
+			print "player %s dead" % self.player.name
+
+	def win(self):
+		if self.alive == False:
+			return
+		self.alive = False
+		self.winner = True
+		self.ships.remove(self)
+		print "player %s wins" % self.player.name

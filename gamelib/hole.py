@@ -1,12 +1,11 @@
 #!/usr/bin/python
 import ode
 import pygame
-from universe import world, space, holes
 from consts import *
 import graphics
 
 class Hole:
-	def __init__(self, x, y):
+	def __init__(self, x, y, (world, space)):
 		self.body = b = ode.Body(world)
 		self.body.grobj = self
 		self.mass = M = ode.Mass()
