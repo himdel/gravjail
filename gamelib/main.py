@@ -27,7 +27,6 @@ def play(nplayers):
 	pos = [(1.5, -0.5), (1.5, -1.5), (0.5, -0.5), (0.5, -1.5)]
 	pnames = ["yellow", "violet", "cyan", "white"]
 
-	print nplayers
 	for x in range(nplayers):
 		s = ship.Ship(pos[x][0], pos[x][1], consts.pcolors[x])
 		p = player.Player(s, consts.keyConfigs[x], pnames[x])
@@ -42,7 +41,6 @@ def play(nplayers):
 		universe.checkpoints.append(Checkpoint(random.random() * consts.holes_spc - consts.holes_spc / 2, random.random() * consts.holes_spc - consts.holes_spc / 2))
 
 	game_layout = layout.Layout(universe.players)
-	print universe.players
 	x = True
 	keys = {}
 	while x:
